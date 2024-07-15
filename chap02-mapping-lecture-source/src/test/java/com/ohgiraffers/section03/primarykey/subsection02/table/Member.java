@@ -1,9 +1,6 @@
-package com.ohgiraffers.section01.entity;
+package com.ohgiraffers.section03.primarykey.subsection02.table;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,8 +13,13 @@ import java.time.LocalDate;
 생략하면 자동으로 클래스 이름을 엔티티 명으로 사용한다.
  */
 
-//@Entity(name = "member_section01")
-@Table(name = "tbl_member_section01")
+//@Entity(name = "member_section03_sub02")
+@Table(name = "tbl_member_section03")
+@TableGenerator(
+        name="member_seq_table_generator",
+        table="tbl_my_sequence",
+        pkColumnValue = "my_seq_member_no"
+)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -25,18 +27,9 @@ import java.time.LocalDate;
 @ToString
 public class Member {
 
-    /*
-    Entity
-    프로젝트 내에 다른 패키지에도 동일한 엔티티가 존재할 경우 ,
-    식별하기 위한 name 을 필수 지정해야한다.
-    기본 생성자는 필수 작성
-    final 클래스, enum , interface , inner class 에서는 사용할 수 없다.
-    저장할 필드에 final 을 사용하면 안된다.
-    */
-
-    // PK 가 우선시 되어 칼럼이 생기고, 일반 컬럼은 오름차순으로 생성된다.
     @Id
     @Column(name = "member_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "member_seq_table_generator")
     private int memberNo;
     @Column(name = "member_id")
     private String memberId;

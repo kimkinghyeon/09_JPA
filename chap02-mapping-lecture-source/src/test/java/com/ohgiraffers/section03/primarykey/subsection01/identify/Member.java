@@ -1,9 +1,6 @@
-package com.ohgiraffers.section01.entity;
+package com.ohgiraffers.section03.primarykey.subsection01.identify;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,8 +13,8 @@ import java.time.LocalDate;
 생략하면 자동으로 클래스 이름을 엔티티 명으로 사용한다.
  */
 
-//@Entity(name = "member_section01")
-@Table(name = "tbl_member_section01")
+//@Entity(name = "member_section03_sub01")
+@Table(name = "tbl_member_section03")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -37,6 +34,7 @@ public class Member {
     // PK 가 우선시 되어 칼럼이 생기고, 일반 컬럼은 오름차순으로 생성된다.
     @Id
     @Column(name = "member_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberNo;
     @Column(name = "member_id")
     private String memberId;
