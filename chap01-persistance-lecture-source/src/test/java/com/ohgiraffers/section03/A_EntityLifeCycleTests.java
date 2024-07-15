@@ -177,7 +177,8 @@ public class A_EntityLifeCycleTests {
         foundMenu1.setMenuPrice(40000);
         System.out.println("foundMenu1 = " + foundMenu1);
         foundMenu2.setMenuPrice(40000);
-        //then
+        System.out.println("foundMenu2 = " + foundMenu2);
+       //then
         assertEquals(4000, entityManager.find(Menu.class, 11).getMenuPrice());
         assertEquals(4000, entityManager.find(Menu.class, 12).getMenuPrice());
     }
