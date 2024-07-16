@@ -27,7 +27,8 @@ public class ManyToOneAssociationTests {
     참조를 보관할 수 있다.
     엄밀히 말하면, 이는 양방향 관계가 아닌, 단방향 2개로 볼 수 있다.
     단방향 연관관계
-    양방향 연관관계* */
+    양방향 연관관계
+    */
 
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager entityManager;

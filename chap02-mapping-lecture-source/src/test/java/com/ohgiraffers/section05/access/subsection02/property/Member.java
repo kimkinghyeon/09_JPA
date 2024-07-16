@@ -1,33 +1,29 @@
 package com.ohgiraffers.section05.access.subsection02.property;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-//@Entity(name = "member_section05_sub02")
+@Entity(name="member_section05_sub02")
+@Table(name="tbl_member_section05_sub02")
 @Access(AccessType.PROPERTY)
 /*
-클래스레벨에 @Access(AccessType.FIELD)를 선언할때
-@Id 어노테이션이 필드에 있다면 엔티티를 생서하지 못한다.
-* */
+ * 클래스래벨에 @Access(AccessType.PROPERTY)를 선언할때
+ * @Id 어노테이션이 필드에 있다면 엔티티를 생성하지 못한다.
+ * */
 public class Member {
-    @Id
-    @Column(name = "member_no")
-    @Access(AccessType.FIELD)
+
+    @Column(name="member_no")
     private int memberNo;
-    @Column(name = "member_id")
-    @Access(AccessType.FIELD)
+
+    @Column(name="member_id")
     private String memberId;
-    @Column(name = "member_pwd")
-    @Access(AccessType.FIELD)
+
+    @Column(name="member_pwd")
     private String memberPwd;
-    @Column(name = "nickname")
-    @Access(AccessType.FIELD)
-    private String nickName;
 
+    @Column(name="nickname")
+    private String nickname;
 
+    @Id
     public int getMemberNo() {
         return memberNo;
     }
@@ -40,9 +36,9 @@ public class Member {
         return memberPwd;
     }
 
-    public String getNickName() {
-        System.out.println("💥💥💥💥 GetNickName() 메소드확인");
-        return nickName + "님";
+    public String getNickname() {
+        System.out.println("✨✨✨✨ getNickname() 메소드 확인 ");
+        return nickname + "님";
     }
 
     public void setMemberNo(int memberNo) {
@@ -57,8 +53,8 @@ public class Member {
         this.memberPwd = memberPwd;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     @Override
@@ -67,7 +63,7 @@ public class Member {
                 "memberNo=" + memberNo +
                 ", memberId='" + memberId + '\'' +
                 ", memberPwd='" + memberPwd + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 '}';
     }
 }

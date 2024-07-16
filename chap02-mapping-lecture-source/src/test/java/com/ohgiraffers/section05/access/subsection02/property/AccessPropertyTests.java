@@ -40,7 +40,7 @@ public class AccessPropertyTests {
         member.setMemberNo(1);
         member.setMemberId("user01");
         member.setMemberPwd("pass01");
-        member.setNickName("키키코코");
+        member.setNickname("키키코코");
         //when
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
@@ -56,9 +56,9 @@ public class AccessPropertyTests {
 //        System.out.println("foundMember = " + foundMember);
 //        assertEquals(member, foundMember);
 
-        String jpql = "select a.nickName from member_section05_sub02 a where a.memberNo= 1";
+        String jpql = "select a.nickname from member_section05_sub02 a where a.memberNo= 1";
         String registNickName = entityManager.createQuery(jpql,String.class).getSingleResult();
-        assertEquals("키키코코",registNickName);
+        assertEquals("키키코코님",registNickName);
         System.out.println(member);
 
     }
