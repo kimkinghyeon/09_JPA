@@ -1,9 +1,6 @@
 package com.ohgiraffers.section06.compositekey.subsection02.idClassTests;
 
 import lombok.*;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -32,6 +29,4 @@ public class MemberPk {
     public int hashCode() {
         return Objects.hash(memberNo,memberId);
     }
-
-
 }
