@@ -1,4 +1,4 @@
-package com.ohgiraffers.section05.access.subsection02.property;
+package com.ohgiraffers.section06.compositekey.subsection02.idClassTests;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AccessPropertyTests {
+public class IdClassTests {
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager entityManager;
 
@@ -32,35 +32,31 @@ public class AccessPropertyTests {
         entityManager.close();
     }
 
-    @DisplayName("프로펄티 작동 테스트")
+    @DisplayName("아이디 클래스를 사용한 복합키 테이블 매핑 테스트")
     @Test
-    public void accessPropertyTest(){
+    public void idClassTest() {
+
         //given
         Member member = new Member();
         member.setMemberNo(1);
         member.setMemberId("user01");
-        member.setMemberPwd("pass01");
-        member.setNickName("키키코코");
+        member.setPhone("010-1234-5678");
+        member.setAddress("서울시 강남동");
+
         //when
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        try{
+
+        try {
             entityManager.persist(member);
             transaction.commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             transaction.rollback();
             throw new RuntimeException(e);
         }
+
         //then
-//        Member foundMember = entityManager.find(Member.class, 1);
-//        System.out.println("foundMember = " + foundMember);
-//        assertEquals(member, foundMember);
-
-        String jpql = "select a.nickName from member_section05_sub02 a where a.memberNo= 1";
-        String registNickName = entityManager.createQuery(jpql,String.class).getSingleResult();
-        assertEquals("키키코코",registNickName);
-        System.out.println(member);
-
+    Member foundMember = entityManager.find(Member.class,new MemberPk(1,"user01"));
+        assertEquals(member,foundMember);
     }
-
 }
