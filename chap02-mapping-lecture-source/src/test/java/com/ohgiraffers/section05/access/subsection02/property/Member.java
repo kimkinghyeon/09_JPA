@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "member_section05_sub02")
+//@Entity(name = "member_section05_sub02")
 @Access(AccessType.PROPERTY)
 /*
 클래스레벨에 @Access(AccessType.FIELD)를 선언할때
