@@ -45,7 +45,7 @@ public class PagingTests {
     public void test1() {
 
         //given
-        int offset = 0;//조회를 건너뛸 행의 수
+        int offset = 1;//조회를 건너뛸 행의 수
         int limit = 5; // 한번에 조회할 행의 수
 
         //when

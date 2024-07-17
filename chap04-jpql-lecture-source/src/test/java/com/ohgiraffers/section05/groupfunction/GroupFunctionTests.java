@@ -1,9 +1,14 @@
 package com.ohgiraffers.section05.groupfunction;
 
+import com.ohgiraffers.section03.projection.CategoryInfo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -89,6 +94,33 @@ public class GroupFunctionTests {
         });
 //        assertTrue(countOfMenu >= 0);
 //        System.out.println("countOfMenu = " + countOfMenu);
+
+    }
+
+    @DisplayName("groupBy 절과 having 절을 사용한 조회테스트")
+    @Test
+    public void test3() {
+
+        //given
+
+        long minPrice = 5000L;
+        // 그룹함수의 반환 타입은 long 이므로 비교를 위한 파라미터도 long 타입을 사용해야한다.
+        //when
+        String jpql = """
+                select m.categoryCode , sum(m.menuPrice)
+                from menu_section05 m
+                group by m.categoryCode
+                having sum(m.menuPrice) >= :minPrice
+                """;
+        List<Object[]> sumPriceOfCategoryList =
+                entityManager.createQuery(jpql, Object[].class)
+                .setParameter("minPrice",minPrice)
+                .getResultList();
+        //then
+        assertNotNull(sumPriceOfCategoryList);
+        sumPriceOfCategoryList.forEach(row -> {
+            Arrays.stream(row).forEach(System.out::println);
+        });
 
     }
 }
