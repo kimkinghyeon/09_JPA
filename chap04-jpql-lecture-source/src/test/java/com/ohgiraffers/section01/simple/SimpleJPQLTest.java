@@ -68,7 +68,7 @@ public class SimpleJPQLTest {
         String jpql = "select m.menuName from menu_section01 m where m.menuCode = 7 ";
         TypedQuery<String> query = entityManager.createQuery(jpql, String.class);// 반환 결과를 문자열로 받겠다
         String resultMenuName = query.getSingleResult();// 결과반환
-//then
+        //then
         assertEquals("민트미역국", resultMenuName);
     }
 
@@ -117,7 +117,7 @@ public class SimpleJPQLTest {
         //then
         assertNotNull(menuList);
 
-        for (Menu menu : menuList){
+        for (Menu menu : menuList) {
             System.out.println("menu = " + menu);
         }
 
@@ -136,7 +136,7 @@ public class SimpleJPQLTest {
         //then
         assertNotNull(menuList);
 
-        for (Menu menu : menuList){
+        for (Menu menu : menuList) {
             System.out.println("menu = " + menu);
         }
 
@@ -144,22 +144,23 @@ public class SimpleJPQLTest {
 
     @Test
     @DisplayName("distinct  를 사용한 중복제거 여러 행 조회 테스트")
-    void test6(){
+    void test6() {
         //given
         //when
         String jpql = "select distinct m.categoryCode from menu_section01 m";
-        TypedQuery<Integer> query = entityManager.createQuery(jpql,Integer.class);
+        TypedQuery<Integer> query = entityManager.createQuery(jpql, Integer.class);
         List<Integer> categoryList = query.getResultList();
         //then
         assertNotNull(categoryList);
 
-        for (Integer i : categoryList){
+        for (Integer i : categoryList) {
             System.out.println(i);
         }
     }
+
     @Test
     @DisplayName("in 연산자를 활용한 조회 테스트")
-    void test7(){
+    void test7() {
         //given
         //when
         String jpql = "select m from menu_section01 m where m.categoryCode in(6,7) order by m.menuCode desc";
@@ -171,14 +172,14 @@ public class SimpleJPQLTest {
 
     @DisplayName("like 연산자를 활용한 조회 테스트")
     @Test
-    public void test8 () {
+    public void test8() {
 
         //given
 
 
         //when
         String jpql = "select m from menu_section01 m where m.menuName like '%마늘%'";
-        List<Menu> menuList = entityManager.createQuery(jpql,Menu.class).getResultList();
+        List<Menu> menuList = entityManager.createQuery(jpql, Menu.class).getResultList();
         //then
         assertNotNull(menuList);
         menuList.forEach(System.out::println);
